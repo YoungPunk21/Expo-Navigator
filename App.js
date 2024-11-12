@@ -1,11 +1,15 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { View, Text, StyleSheet } from 'react-native';
+import ProgrammingLanguagesScreen from './ProgrammingLanguagesScreen';
 
-export default function App() {
+const Tab = createBottomTabNavigator();
+
+function AboutScreen() {
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+      <Text style={styles.text}>О Себе</Text>
     </View>
   );
 }
@@ -13,8 +17,22 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
     justifyContent: 'center',
+    alignItems: 'center',       
+  },
+  text: {
+    fontSize: 20,
+    fontWeight: 'bold',
   },
 });
+
+export default function App() {
+  return (
+    <NavigationContainer>
+      <Tab.Navigator>
+        <Tab.Screen name="О Себе" component={AboutScreen} />
+        <Tab.Screen name="Мои языки программирования" component={ProgrammingLanguagesScreen} />
+      </Tab.Navigator>
+    </NavigationContainer>
+  );
+}
